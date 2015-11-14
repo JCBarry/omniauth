@@ -2,17 +2,7 @@ module OmniAuth
   class Builder < ::Rack::Builder
     def initialize(app, &block)
       @options = nil
-      if rack14?
-        super
-      else
-        @app = app
-        super(&block)
-        @ins << @app
-      end
-    end
-
-    def rack14?
-      Rack.release.split('.')[1].to_i >= 4
+      super
     end
 
     def on_failure(&block)
